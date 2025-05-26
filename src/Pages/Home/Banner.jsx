@@ -1,8 +1,8 @@
 import { motion } from "motion/react";
 const Banner = () => {
   return (
-    <div className="my-5 min-h-96 flex w-[90%] mx-auto justify-center items-center">
-      <div>
+    <div className="my-5 min-h-[80vh] flex w-[75%] mx-auto justify-center items-center">
+      <div className="space-y-5">
         <h2 className="text-3xl font-semibold">
           Welcome to{" "}
           <motion.span
@@ -25,8 +25,15 @@ const Banner = () => {
         <motion.img
           animate={{ y: [0, 50, 0] }}
           transition={{ duration: 4, repeat: Infinity }}
-          className="w-72 border-blue-500 border-s-4 border-b-4 rounded-t-4xl"
+          className="w-96 border-blue-500 border-s-4 border-b-4 rounded-t-4xl"
           src="/job1.jpg"
+          alt=""
+        />
+        <motion.img
+          animate={{ x: [0, 20, 0] }}
+          transition={{ duration: 4, repeat: Infinity }}
+          className="w-96 border-blue-500 border-s-4 border-b-4 rounded-t-4xl"
+          src="/job2.jpg"
           alt=""
         />
       </div>

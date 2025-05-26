@@ -2,15 +2,27 @@ import Lottie from "lottie-react";
 import register from "../../assets/register.json";
 import { use } from "react";
 import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
-  const { loginUser, setLoading } = use(AuthContext);
+  const { loginUser, setLoading, googleLogin } = use(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     loginUser(email, password)
+      .then((res) => {
+        setLoading(false);
+        console.log(res.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  const handleGoogleLogin = () => {
+    const googleProvider = new GoogleAuthProvider();
+    googleLogin(googleProvider)
       .then((res) => {
         setLoading(false);
         console.log(res.user);
@@ -52,6 +64,10 @@ const Login = () => {
                 </div>
                 <button className="btn btn-neutral mt-4">Login</button>
               </fieldset>
+              <div className="divider">OR</div>
+              <button onClick={handleGoogleLogin} className="btn w-full">
+                Login with Google
+              </button>
             </form>
           </div>
         </div>
