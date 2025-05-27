@@ -3,9 +3,13 @@ import register from "../../assets/register.json";
 import { use } from "react";
 import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
 import { GoogleAuthProvider } from "firebase/auth";
+import { useLocation, useNavigate } from "react-router";
 
 const Login = () => {
   const { loginUser, setLoading, googleLogin } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state || "/";
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,6 +19,7 @@ const Login = () => {
       .then((res) => {
         setLoading(false);
         console.log(res.user);
+        navigate(from);
       })
       .catch((error) => {
         console.log(error.message);
@@ -26,6 +31,7 @@ const Login = () => {
       .then((res) => {
         setLoading(false);
         console.log(res.user);
+        navigate(from);
       })
       .catch((error) => {
         console.log(error.message);
