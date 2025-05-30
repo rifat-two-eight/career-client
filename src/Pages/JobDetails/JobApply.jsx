@@ -46,8 +46,6 @@ const JobApply = () => {
           placeholder="linkedin link"
         />
 
-        {/* label of github */}
-
         <label className="label">Github Link</label>
         <input
           type="url"
